@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinoServerBackend", "KinoServerBackend\KinoServerBackend.csproj", "{7C75BF28-785C-42ED-9632-7D552EFE7866}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C75BF28-785C-42ED-9632-7D552EFE7866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C75BF28-785C-42ED-9632-7D552EFE7866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C75BF28-785C-42ED-9632-7D552EFE7866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C75BF28-785C-42ED-9632-7D552EFE7866}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C1B9EC5-429C-46C4-9063-6E725F1B0209}
+	EndGlobalSection
+EndGlobal
