@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    def remote = [:]
-    remote.name = VPS
-    remote.host = "51.75.69.121"
-    remote.allowAnyHosts = true
-
     stages {
         stage('Build') {
             steps {
@@ -23,6 +18,11 @@ pipeline {
 	stage('Deploy') {
 	    steps {
                 withCredentials([sshUserPrivateKey(credentialsId: '080224dd-befc-44bd-a621-e037477e0a0a', keyFileVariable: 'ident', passphraseVariable: 'pass', usernameVariable: 'user')]) {
+		    
+		    def remote [:]
+		    remote.name = 'VPS'
+		    remote.host = "51.75.69.121"
+		    remote.allowAnyHosts = true
 		    remote.user = user
 		    remote.indentityFile = ident
 		    remote.password = pass
