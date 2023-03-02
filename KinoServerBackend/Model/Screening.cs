@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace KinoServerBackend.Model
@@ -6,8 +7,8 @@ namespace KinoServerBackend.Model
     public class Screening
     {
         [Key]
-        public int Id { get; set; }
-        public string MovieName { get; set; }
+        public int ID { get; set; }
+        public Movie Movie { get; set; }
         public DateTime ScreeningTime { get; set; }
         
 

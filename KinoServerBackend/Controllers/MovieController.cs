@@ -6,6 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.Xml;
 
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+using System.Net.Mime;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.HttpLogging;
+
 namespace KinoServerBackend.Controllers
 {
     [Route("api/[controller]s")]
@@ -26,17 +32,35 @@ namespace KinoServerBackend.Controllers
         public ActionResult<List<ScreeningsDTO>> GetScreenings() {
 
             var query = from s in _context.Screenings
-                        join m in _context.Movies on s.MovieName equals m.Name
-                        select new { s, m.Duration };
+                    join m in _context.Movies on s.Movie.Name equals m.Name
+                    select new { s, m };
 
             List<ScreeningsDTO> screenings = new List<ScreeningsDTO>();
-            foreach(var record in query) {
+            foreach (var record in query) {
                 screenings.Add(new ScreeningsDTO {
-                    _screening = record.s,
-                    _duration = record.Duration
+                    Screening = record.s,
+                    Duration = record.m.Duration
                 });
             }
+            return Ok(screenings);
+        }
 
+        [HttpGet("GetScreeningsByID")]
+        public ActionResult<List<ScreeningsDTO>> GetScreeningsByID([FromQuery] int id) {
+
+            // No movie name provided equals return all screenings
+            var query = from s in _context.Screenings
+                        join m in _context.Movies on s.Movie.Name equals m.Name
+                        where m.ID == id
+                        select new { s, m };
+
+            List<ScreeningsDTO> screenings = new List<ScreeningsDTO>();
+            foreach (var record in query) {
+                screenings.Add(new ScreeningsDTO {
+                    Screening = record.s,
+                    Duration = record.m.Duration
+                });
+            }
             return Ok(screenings);
         }
     }

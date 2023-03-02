@@ -9,6 +9,7 @@ namespace KinoServerBackend.Model
         public int Row { get; set; }
         public int Column { get; set; }
         public bool IsReserved { get; set; }
+        public Reservation? ReservedBy { get; set; }
         
 
     }

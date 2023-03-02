@@ -1,9 +1,11 @@
-﻿namespace KinoServerBackend.Model.DTO
+﻿using Newtonsoft.Json;
+
+namespace KinoServerBackend.Model.DTO
 {
     public class ScreeningsDTO
     {
-        public Screening _screening;
-        public TimeSpan _duration;
+        public Screening Screening { get; set; }
+        public TimeSpan Duration { get; set; }
 
     }
 }
