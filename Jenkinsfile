@@ -18,13 +18,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
 		sh 'dotnet publish -c Release -r linux-x64 --self-contained'
-		publishOverFtp (
-          		configFile: 'Backend deploy', // The name of your FTP configuration in Jenkins
-			failOnError: true, // Whether to fail the build if there are any errors during the upload
-			flatten: false, // Whether to flatten the directory structure of the files being uploaded
-			includes: '**/*', // The file pattern to include in the upload
-			remoteDirectory: '~/API' // The directory on the remote FTP server to upload the files to
-        	)
+		ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, publishers: [[configName: 'Backend deploy', transfers: [[asciiMode: false, cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '~/API', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '/var/lib/jenkins/workspace/KinoServeBackend/KinoServerBackend/bin/Release/net6.0/linux-x64/publish/*']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
             }
         }
     }
