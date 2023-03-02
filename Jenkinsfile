@@ -19,7 +19,7 @@ pipeline {
 	    steps {
                 withCredentials([sshUserPrivateKey(credentialsId: '080224dd-befc-44bd-a621-e037477e0a0a', keyFileVariable: 'ident', passphraseVariable: 'pass', usernameVariable: 'user')]) {
 		    
-		    def remote [:]
+		    def remote = [:]
 		    remote.name = 'VPS'
 		    remote.host = "51.75.69.121"
 		    remote.allowAnyHosts = true
