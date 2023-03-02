@@ -28,9 +28,8 @@ pipeline {
             stage('Deploy') {
 		steps {
                     echo 'Deploying....'
-		        sh 'dotnet publish KinoServerBackend/KinoServerBackend.csproj -c Release -r linux-x64 --self-contained'
-			echo user
-		    }
+		    sh 'dotnet publish KinoServerBackend/KinoServerBackend.csproj -c Release -r linux-x64 --self-contained'
+		    echo user
 		}
 	    }
         }
