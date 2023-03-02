@@ -20,7 +20,7 @@ pipeline {
 		sh 'dotnet publish KinoServerBackend/KinoServerBackend.csproj -c Release -r linux-x64 --self-contained'
 		sh 'ls'
 		echo ' --- '
-		sh 'ls KinoServeBackend/KinoServerBackend/bin/Release/net6.0/linux-x64/publish/'
+		sh 'ls KinoServerBackend/bin/Release/net6.0/linux-x64/publish/'
 		ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, masterNodeName: 'master', paramPublish: [parameterName: ''], publishers: [
 			[configName: 'Backend deploy', transfers: [
 				[asciiMode: false, cleanRemote: false, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '~/API/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'KinoServerBackend/bin/Release/net6.0/linux-x64/publish/*']
