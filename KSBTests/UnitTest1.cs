@@ -1,3 +1,5 @@
+using KinoServerBackend.Model;
+
 namespace KSBTests
 {
     public class UnitTest1
@@ -9,9 +11,13 @@ namespace KSBTests
         }
 
         [Fact]
-        public void Test2() {
-            Console.WriteLine("Test02");
-            Assert.Equal(2, 2);
+        public void Base64Encode() {
+            Assert.Equal("VGVzdCAxMjM=", Base64.Encode("Test 123"));
+        }
+
+        [Fact]
+        public void Base64Decode() {
+            Assert.Equal("Test 123", Base64.Decode("VGVzdCAxMjM="));
         }
     }
 }
