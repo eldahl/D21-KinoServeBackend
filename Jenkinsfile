@@ -2,13 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Start up') {
+			steps {
+				dir('KSBTests') {
+					sh 'rm -rf TestResults'
+				}
+			}
+		}
+		
+		stage('Build') {
             steps {
                 echo 'Building..'
 				sh 'dotnet build'
             }
         }
-        stage('Test') {
+		
+		stage('Test') {
             steps {
                 echo 'Testing..'
 				sh 'dotnet test'
