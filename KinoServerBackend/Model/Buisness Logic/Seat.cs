@@ -6,10 +6,12 @@ namespace KinoServerBackend.Model
     {
         [Key]
         public int ID { get; set; }
+        [Required]
         public int Row { get; set; }
+        [Required]
         public int Column { get; set; }
-        public bool IsReserved { get; set; }
-        public Reservation? ReservedBy { get; set; }
+        [Required]
+        public Reservation ReservedBy { get; set; }
         
 
     }

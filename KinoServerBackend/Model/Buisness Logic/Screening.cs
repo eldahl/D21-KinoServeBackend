@@ -8,9 +8,13 @@ namespace KinoServerBackend.Model
     {
         [Key]
         public int ID { get; set; }
+        [Required]
+        public Theater Theater { get; set; }
+        [Required]
         public Movie Movie { get; set; }
+        [Required]
         public DateTime ScreeningTime { get; set; }
-        
-
+        [Required]
+        public float Price { get; set; }
     }
 }

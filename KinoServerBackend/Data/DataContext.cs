@@ -11,6 +11,9 @@ namespace KinoServerBackend.Data
         public DbSet<Theater> Theaters { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Screening> Screenings { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<Seat> Seats { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
     }
 }

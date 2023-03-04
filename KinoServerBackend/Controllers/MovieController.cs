@@ -32,8 +32,8 @@ namespace KinoServerBackend.Controllers
         public ActionResult<List<ScreeningsDTO>> GetScreenings() {
 
             var query = from s in _context.Screenings
-                    join m in _context.Movies on s.Movie.Name equals m.Name
-                    select new { s, m };
+                        join m in _context.Movies on s.Movie.Name equals m.Name
+                        select new { s, m };
 
             List<ScreeningsDTO> screenings = new List<ScreeningsDTO>();
             foreach (var record in query) {
@@ -50,7 +50,7 @@ namespace KinoServerBackend.Controllers
 
             // No movie name provided equals return all screenings
             var query = from s in _context.Screenings
-                        join m in _context.Movies on s.Movie.Name equals m.Name
+                        join m in _context.Movies on s.Movie.ID equals m.ID
                         where m.ID == id
                         select new { s, m };
 
@@ -63,5 +63,43 @@ namespace KinoServerBackend.Controllers
             }
             return Ok(screenings);
         }
+
+        [HttpGet("GetSeatingsForScreening")]
+        public ActionResult<List<ScreeningsDTO>> GetSeatingsForScreening([FromQuery] int id) {
+
+            var query = from s in _context.Screenings
+                        join m in _context.Movies on s.Movie.Name equals m.Name
+                        select new { s, m };
+
+            List<ScreeningsDTO> screenings = new List<ScreeningsDTO>();
+            foreach (var record in query) {
+                screenings.Add(new ScreeningsDTO {
+                    Screening = record.s,
+                    Duration = record.m.Duration
+                });
+            }
+            return Ok(screenings);
+        }
+
+        /*
+        [HttpGet("GetScreeningsByID")]
+        public ActionResult<List<ScreeningsDTO>> GetScreeningsByID([FromQuery] int id) {
+
+            // No movie name provided equals return all screenings
+            var query = from s in _context.Screenings
+                        join m in _context.Movies on s.Movie.ID equals m.ID
+                        where m.ID == id
+                        select new { s, m };
+
+            List<ScreeningsDTO> screenings = new List<ScreeningsDTO>();
+            foreach (var record in query) {
+                screenings.Add(new ScreeningsDTO {
+                    Screening = record.s,
+                    Duration = record.m.Duration
+                });
+            }
+            return Ok(screenings);
+        }
+        */
     }
 }
