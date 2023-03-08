@@ -73,6 +73,49 @@ namespace KinoServerBackend.Controllers
             return Ok("Reservation made!");
         }
 
+        /// <summary>
+        /// Gets the theater for a given screening
+        /// </summary>
+        /// <param name="sID">Screening ID</param>
+        /// <returns></returns>
+        [HttpGet("GetTheaterByScreeningID")]
+        public ActionResult GetTheaterByScreeningID([FromQuery] int sID) {
+
+            var query = from s in _context.Screenings
+                        where s.ID == sID
+                        select s.Theater;
+
+            // Return first occurring theater
+            foreach (Theater t in query) {
+                return Ok(t);
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Returns reserved seats for the given screening
+        /// </summary>
+        /// <param name="sID">Screening ID</param>
+        /// <returns></returns>
+        [HttpGet("GetSeatsByScreeningID")]
+        public async Task<ActionResult<List<SeatDTO>>> GetSeatsByScreeningID([FromQuery] int sID) {
+            var query = from s in _context.Seats
+                        where s.ReservedBy.Screening.ID == sID
+                        select s;
+
+            // Create list of reserved seats
+            List<SeatDTO> seatsReserved = new List<SeatDTO>();
+            await query.ForEachAsync((seat) => {
+                seatsReserved.Add(new SeatDTO() {
+                    Row = seat.Row,
+                    Column = seat.Column
+                });
+            });
+
+            return Ok(seatsReserved);
+        }
+
         [HttpGet("ResDTO")]
         public ActionResult ResDTO() {
 
