@@ -15,11 +15,11 @@ namespace KSBTests
 
             theater.ID = 1;
             theater.Name = "Bollywood bombers";
-            theater.Capacity = 52;
+         
 
             Assert.Equal(1, theater.ID);
             Assert.Equal("Bollywood bombers", theater.Name);
-            Assert.Equal(52, theater.Capacity);
+         
         }
 
         [Fact]
@@ -29,13 +29,10 @@ namespace KSBTests
             seat.ID = 1;
             seat.Row = 2;
             seat.Column = 3;
-            seat.IsReserved = false;
             seat.ReservedBy = null;
-
             Assert.Equal(1, seat.ID);
             Assert.Equal(2, seat.Row);
             Assert.Equal(3, seat.Column);
-            Assert.False(seat.IsReserved);
             Assert.Null(seat.ReservedBy);
         }
     }
