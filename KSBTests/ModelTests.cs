@@ -12,20 +12,18 @@ namespace KSBTests
         [Fact]
         public void TheaterCoverage() {
             Theater theater = new Theater();
-
+            
             theater.ID = 1;
             theater.Name = "Bollywood bombers";
-         
-
+            
             Assert.Equal(1, theater.ID);
             Assert.Equal("Bollywood bombers", theater.Name);
-         
         }
 
         [Fact]
         public void SeatCoverage() {
             Seat seat = new Seat();
-
+            
             seat.ID = 1;
             seat.Row = 2;
             seat.Column = 3;
