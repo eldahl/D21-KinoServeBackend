@@ -41,7 +41,7 @@ pipeline {
 			steps {   
 				echo 'Deploying ...'
 				sh 'dotnet publish KinoServerBackend/KinoServerBackend.csproj -c Release -r linux-x64 --self-contained'
-				sh 'docker build KinoServerBackend/Dockerfile -t ksbackend'
+				sh 'docker build KinoServerBackend/. -t ksbackend'
 			}
 		}
     }
