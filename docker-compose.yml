@@ -12,4 +12,5 @@ services:
         image: ksbackend
         ports:
             - '80:80'
-
+        depends_on:
+            databases
