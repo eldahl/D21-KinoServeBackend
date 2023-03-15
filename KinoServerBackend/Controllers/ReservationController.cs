@@ -25,7 +25,7 @@ namespace KinoServerBackend.Controllers
                                  where s.ID == reservationDTO.ScreeningID
                                  select s;
             var CustomerQuery = from c in _context.Customers
-                                where c.ID == reservationDTO.CustomerID
+                                where c.Email == reservationDTO.CustomerEmail
                                 select c;
 
             // test if reservation.Screening contains an element
@@ -40,14 +40,14 @@ namespace KinoServerBackend.Controllers
 
             // Make sure Screening and Customer exist
             if (reservation.Screening is null || reservation.Customer is null) {
-                return BadRequest("Invalid Screening or Customer ID!");
+                return BadRequest("Invalid Screening or Customer Email!");
             }
 
             // Make sure all seats are available
             List<Seat> SeatsToReserve = new List<Seat>();
             foreach (SeatDTO seat in reservationDTO.Seats) {
                 var SeatQuery = from s in _context.Seats
-                                where s.Row == seat.Row && s.Column == seat.Column
+                                where s.Row == seat.Row && s.Column == seat.Column && s.ReservedBy.Screening.ID == reservation.Screening.ID
                                 select s;
 
                 // See if seat is taken
@@ -121,7 +121,7 @@ namespace KinoServerBackend.Controllers
 
             // Create new ReservationDTO example
             ReservationDTO reservationDTO = new ReservationDTO {
-                CustomerID = 1,
+                CustomerEmail = "test@email.com",
                 ScreeningID = 1,
                 Seats = new SeatDTO[] {
                     new SeatDTO {
