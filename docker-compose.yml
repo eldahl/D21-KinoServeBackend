@@ -1,14 +1,12 @@
 version: "2"
 services:
     databases:
-        image: 'mcr.microsoft.com/mssql/server'
+        image: 'mcr.microsoft.com/azure-sql-edge'
         ports:
             - '1433:1433'
         environment:
-            - ACCEPT_EULA=Y
-            - SA_PASSWORD=EasvEasv123
-        volumes:
-            - './drive:/var/opt/mssql'
+            - ACCEPT_EULA=1
+            - MSSQL_SA_PASSWORD=EasvEasv123
     API:
         image: ksbackend
 
