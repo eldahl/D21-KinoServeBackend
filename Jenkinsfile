@@ -40,7 +40,7 @@ pipeline {
 		stage('Deploy') {
 			steps {   
 				echo 'Deploying ...'
-				sh 'mv ~/cred/* KinoServerBackend'
+				sh 'cp ~/cred/* KinoServerBackend'
 				sh 'docker build . -t ksbackend'
 				
 				// Standalone image
