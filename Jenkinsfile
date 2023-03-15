@@ -40,8 +40,9 @@ pipeline {
 		stage('Deploy') {
 			steps {   
 				echo 'Deploying ...'
-				sh 'docker build . -t ksbackend'
-				sh 'docker run -d -p 80:80 ksbackend'
+				//sh 'docker build . -t ksbackend'
+				//sh 'docker run -d -p 80:80 ksbackend'
+				sh 'docker compose up -d'
 			}
 		}
     }
