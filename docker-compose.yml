@@ -9,4 +9,6 @@ services:
             - MSSQL_SA_PASSWORD=EasvEasv123
     API:
         image: ksbackend
+        ports:
+            - '80:80'
 
