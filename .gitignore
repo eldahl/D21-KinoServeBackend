@@ -401,5 +401,5 @@ FodyWeavers.xsd
 # Credentials removal
 KinoServerBackend/appsettings.*
 
-# Migrations
-KinoServerBackend/Migrations/
+# Migrations - No, we need them actually
+# KinoServerBackend/Migrations/
