@@ -7,7 +7,7 @@ services:
         environment:
             - ACCEPT_EULA=Y
             - MSSQL_SA_PASSWORD=EasvEasv123!
-            - MSSQL_PID=Developer
+            - MSSQL_PID=Express
     API:
         image: ksbackend
         ports:
