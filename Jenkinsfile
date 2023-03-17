@@ -40,6 +40,7 @@ pipeline {
 		stage('Deploy') {
 			steps {   
 				echo 'Deploying ...'
+				sh 'rm -rf KinoServerBackend/appsettings.*'
 				sh 'cp ~/cred/* KinoServerBackend'
 				sh 'docker build . -t ksbackend'
 				
