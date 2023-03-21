@@ -24,7 +24,7 @@ pipeline {
 				
 				dir('KSBTests') {
 					sh 'dotnet add package coverlet.collector'
-					sh "dotnet test --settings coverlet.runsettings"
+					sh "dotnet test --settings ../coverlet.runsettings"
 				}
             }			
 			post {
