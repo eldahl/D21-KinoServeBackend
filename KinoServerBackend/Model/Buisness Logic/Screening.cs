@@ -2,6 +2,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
+#pragma warning disable CS8618
+
 namespace KinoServerBackend.Model
 {
     public class Screening
@@ -9,7 +11,7 @@ namespace KinoServerBackend.Model
         [Key]
         public int ID { get; set; }
         [Required]
-        public Theater Theater { get; set; }
+        public Theater Theater { get; set; } = default!;
         [Required]
         public Movie Movie { get; set; }
         [Required]

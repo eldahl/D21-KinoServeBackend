@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 
+#pragma warning disable CS8618
+
 namespace KinoServerBackend.Model.DTO
 {
     public class ScreeningsDTO

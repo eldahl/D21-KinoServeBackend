@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Update.Internal;
+using System.ComponentModel.DataAnnotations;
+
+#pragma warning disable CS8618
 
 namespace KinoServerBackend.Model
 {
@@ -18,5 +21,16 @@ namespace KinoServerBackend.Model
         public string? City { get; set; }
         public string? ZipCode { get; set; }
         public string? Country { get; set; }
+
+        public void Update(Customer c) {
+            this.FirstName = c.FirstName;
+            this.LastName = c.LastName;
+            this.Password = c.Password;
+            this.Phone = c.Phone;
+            this.Address = c.Address;
+            this.City = c.City;
+            this.ZipCode = c.ZipCode;
+            this.Country = c.Country;
+        }
     }
 }
