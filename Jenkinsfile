@@ -24,7 +24,7 @@ pipeline {
 				
 				dir('KSBTests') {
 					sh 'dotnet add package coverlet.collector'
-					sh "dotnet test --collect: 'XPlat Code Coverage'"
+					sh "dotnet test --collect: 'XPlat Code Coverage' --settings coverlet.runsettings"
 				}
             }			
 			post {
