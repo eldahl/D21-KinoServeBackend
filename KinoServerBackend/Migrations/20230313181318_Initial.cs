@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KinoServerBackend.Migrations
 {
     /// <inheritdoc />
-    [ExcludeFromCodeCoverage]
+    
     public partial class Initial : Migration
     {
         /// <inheritdoc />

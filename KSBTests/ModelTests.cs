@@ -144,6 +144,30 @@ namespace KSBTests
             Assert.Equal("Townsvile", c.City);
             Assert.Equal("12345", c.ZipCode);
             Assert.Equal("United States", c.Country);
+
+            Customer cust = new Customer();
+            cust.Email = "test2@test2.com";
+            cust.FirstName = "Hannibal";
+            cust.LastName = "Humbucker";
+            cust.Password = "guitarsolo123";
+            cust.Phone = "87654321";
+            cust.Address = "123 Street";
+            cust.City = "Townsvile";
+            cust.ZipCode = "12345";
+            cust.Country = "United States";
+
+            cust.Update(c);
+
+            Assert.Equal("test@test.com", c.Email);
+            Assert.Equal("George", c.FirstName);
+            Assert.Equal("Hotz", c.LastName);
+            Assert.Equal("Gorillas", c.Password);
+            Assert.Equal("12345678", c.Phone);
+            Assert.Equal("Street 123", c.Address);
+            Assert.Equal("Townsvile", c.City);
+            Assert.Equal("12345", c.ZipCode);
+            Assert.Equal("United States", c.Country);
+
         }
     }
 }
