@@ -2,6 +2,8 @@ version: "2"
 services:
     databases:
         image: 'mcr.microsoft.com/mssql/server:2019-latest'
+        networks:
+            - bridge
         ports:
             - '1433:1433'
         environment:
@@ -10,7 +12,11 @@ services:
             - MSSQL_PID=Express
     API:
         image: ksbackend
+        networks:
+            - bridge
         ports:
             - '80:80'
         depends_on:
             - databases
+networks:
+    bridge: {}
