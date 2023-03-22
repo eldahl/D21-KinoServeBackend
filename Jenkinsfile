@@ -24,13 +24,14 @@ pipeline {
 				
 				dir('KSBTests') {
 					sh 'dotnet add package coverlet.collector'
-					sh "dotnet test --settings ../coverlet.runsettings"
+					sh 'dotnet add package coverlet.msbuild'
+					sh "dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByFile='**/*Migrations/*.cs'"
 				}
             }			
 			post {
 				success {
-					archiveArtifacts 'KSBTests/TestResults/*/coverage.cobertura.xml'
-					publishCoverage adapters: [istanbulCoberturaAdapter(path: 'KSBTests/TestResults/*/coverage.cobertura.xml', thresholds: [
+					archiveArtifacts 'KSBTests/coverage.cobertura.xml'
+					publishCoverage adapters: [istanbulCoberturaAdapter(path: 'KSBTests/coverage.cobertura.xml', thresholds: [
 						[failUnhealthy: true, thresholdTarget: 'Conditional', unhealthyThreshold: 80.0, unstableThreshold: 50.0]
 					])], checksName: '', sourceFileResolver: sourceFiles('NEVER_STORE')
 				}
