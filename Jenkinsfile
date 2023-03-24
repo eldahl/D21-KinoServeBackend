@@ -50,6 +50,11 @@ pipeline {
 				
 				// With database
 				sh 'docker compose up -d'
+				
+				// Apply migrations
+				dir('KinoServerBackend') {
+					sh 'dotnet-ef database update'
+				}
 			}
 		}
     }
