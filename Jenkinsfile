@@ -53,9 +53,8 @@ pipeline {
 				
 				// Apply migrations
 				dir('KinoServerBackend') {
-					sh 'dotnet tool list -g'
-					sh 'dotnet new tool-manifest'
-					sh 'dotnet tool install dotnet-ef'
+					sh 'dotnet tool uninstall --global dotnet-ef'
+					sh 'dotnet tool install --global dotnet-ef'
 					sh 'dotnet ef database update'
 				}
 			}
