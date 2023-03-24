@@ -53,6 +53,7 @@ pipeline {
 				
 				// Apply migrations
 				dir('KinoServerBackend') {
+					sh 'dotnet tool list -g'
 					sh 'dotnet-ef database update'
 				}
 			}
