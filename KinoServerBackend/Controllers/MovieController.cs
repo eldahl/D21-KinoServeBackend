@@ -12,6 +12,9 @@ using System.Net.Mime;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.HttpLogging;
 
+using Serilog;
+using Serilog.Core;
+
 namespace KinoServerBackend.Controllers
 {
     [Route("api/[controller]s")]
@@ -21,10 +24,18 @@ namespace KinoServerBackend.Controllers
         private readonly DataContext _context;
         public MovieController(DataContext context) {
             _context = context;
+
+            Log.Logger = new LoggerConfiguration().WriteTo.Console().WriteTo.File("output.log", rollingInterval: RollingInterval.Hour).CreateLogger();
+        }
+
+        ~MovieController() {
+            Log.CloseAndFlush();
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Movie>>> Get() {
+
+            Log.Information("Available movies served to through API.");
             return Ok(await _context.Movies.ToListAsync());
         }
 
